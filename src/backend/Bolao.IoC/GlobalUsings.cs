@@ -1,0 +1,11 @@
+global using Bolao.Application.DTOs;
+global using Bolao.Application.Mappings;
+global using Bolao.Domain.Repositories;
+global using Bolao.Infrastructure.Data;
+global using Bolao.Infrastructure.Repositories;
+global using AutoMapper;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;

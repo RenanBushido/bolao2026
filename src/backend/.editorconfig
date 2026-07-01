@@ -210,6 +210,9 @@ dotnet_diagnostic.CA2208.severity = none
 # CA1862: Use the 'StringComparison' method overloads to perform case-insensitive string comparisons
 dotnet_diagnostic.CA1862.severity = none
 
+# CS8603: Possible null reference return.
+dotnet_diagnostic.CS8603.severity = none
+
 [*.{cs,vb}]
 
 # Naming rules

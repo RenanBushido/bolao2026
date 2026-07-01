@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Bolao.Application\Bolao.Application.csproj" />
     <ProjectReference Include="..\Bolao.Domain\Bolao.Domain.csproj" />
     <ProjectReference Include="..\Bolao.Infrastructure\Bolao.Infrastructure.csproj" />
+    <ProjectReference Include="..\Bolao.IoC\Bolao.IoC.csproj" />
   </ItemGroup>
 
 </Project>

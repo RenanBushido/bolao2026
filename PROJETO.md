@@ -18,6 +18,11 @@ global using System.Text;
 
 ---
 
+## Recomendações
+
+-   Utilizar nas classes, no seu construtor, o modo construtor primário.
+-   Utilizar conditional expression
+
 ## Projeto Infrastructure
 
 Quando houver um projeto para execução de persistência, para organização dos arquivos deverá respeitar a seguinte estrutura:

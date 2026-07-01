@@ -58,7 +58,7 @@ public class Prediction
         return homeGoalsCorrect || awayGoalsCorrect ? 3 : 0;
     }
 
-    private PredictionResult GetPredictedResult()
+    public PredictionResult GetPredictedResult()
     {
         return PredictedHomeGoals.Value > PredictedAwayGoals.Value
             ? PredictionResult.HomeWin
