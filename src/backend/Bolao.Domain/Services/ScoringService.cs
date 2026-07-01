@@ -1,5 +1,3 @@
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Services;
 
 public class ScoringService
@@ -18,23 +16,16 @@ public class ScoringService
 
         if (predictedResult == actualResult)
         {
-            if (homeGoalsCorrect || awayGoalsCorrect)
-                return new Points(12);
-            return new Points(9);
+            return homeGoalsCorrect || awayGoalsCorrect ? new Points(12) : new Points(9);
         }
 
-        if (homeGoalsCorrect || awayGoalsCorrect)
-            return new Points(3);
-
-        return new Points(0);
+        return homeGoalsCorrect || awayGoalsCorrect ? new Points(3) : new Points(0);
     }
 
     private PredictionResult GetResult(GoalCount home, GoalCount away)
     {
-        if (home.Value > away.Value)
-            return PredictionResult.HomeWin;
-        if (away.Value > home.Value)
-            return PredictionResult.AwayWin;
-        return PredictionResult.Draw;
+        return home.Value > away.Value
+            ? PredictionResult.HomeWin
+            : away.Value > home.Value ? PredictionResult.AwayWin : PredictionResult.Draw;
     }
 }

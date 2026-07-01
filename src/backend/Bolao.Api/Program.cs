@@ -1,4 +1,4 @@
-using Bolao.Infrastructure.Context;
+using Bolao.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

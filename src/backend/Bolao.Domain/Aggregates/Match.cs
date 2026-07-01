@@ -1,6 +1,3 @@
-using Bolao.Domain.Entities;
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Aggregates;
 
 public class Match

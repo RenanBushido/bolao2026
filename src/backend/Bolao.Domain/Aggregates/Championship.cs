@@ -1,6 +1,3 @@
-using Bolao.Domain.Entities;
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Aggregates;
 
 public class Championship
@@ -25,16 +22,12 @@ public class Championship
 
     public void SetGroupStage(GroupStage groupStage)
     {
-        if (groupStage == null)
-            throw new ArgumentNullException(nameof(groupStage));
-        GroupStage = groupStage;
+        GroupStage = groupStage ?? throw new ArgumentNullException(nameof(groupStage));
     }
 
     public void SetKnockoutStage(KnockoutStage knockoutStage)
     {
-        if (knockoutStage == null)
-            throw new ArgumentNullException(nameof(knockoutStage));
-        KnockoutStage = knockoutStage;
+        KnockoutStage = knockoutStage ?? throw new ArgumentNullException(nameof(knockoutStage));
     }
 
     private Championship() { }

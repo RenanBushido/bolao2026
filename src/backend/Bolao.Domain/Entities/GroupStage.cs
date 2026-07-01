@@ -4,7 +4,7 @@ public class GroupStage
 {
     public Guid Id { get; set; }
     public Guid ChampionshipId { get; set; }
-    private readonly List<Group> _groups = new();
+    private readonly List<Group> _groups = [];
     public IReadOnlyList<Group> Groups => _groups.AsReadOnly();
 
     public GroupStage(Guid championshipId)

@@ -1,5 +1,3 @@
-using Bolao.Domain.Entities;
-
 namespace Bolao.Domain.Aggregates;
 
 public class Team

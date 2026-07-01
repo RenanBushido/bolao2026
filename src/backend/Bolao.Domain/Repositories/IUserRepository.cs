@@ -1,5 +1,3 @@
-using Bolao.Domain.Aggregates;
-
 namespace Bolao.Domain.Repositories;
 
 public interface IUserRepository : IRepository<User>

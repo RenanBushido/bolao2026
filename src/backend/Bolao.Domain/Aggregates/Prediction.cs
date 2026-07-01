@@ -1,5 +1,3 @@
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Aggregates;
 
 public class Prediction
@@ -54,33 +52,24 @@ public class Prediction
 
         if (predictedResult == actualResult)
         {
-            if (homeGoalsCorrect || awayGoalsCorrect)
-                return 12;
-            return 9;
+            return homeGoalsCorrect || awayGoalsCorrect ? 12 : 9;
         }
 
-        if (homeGoalsCorrect || awayGoalsCorrect)
-            return 3;
-
-        return 0;
+        return homeGoalsCorrect || awayGoalsCorrect ? 3 : 0;
     }
 
     private PredictionResult GetPredictedResult()
     {
-        if (PredictedHomeGoals.Value > PredictedAwayGoals.Value)
-            return PredictionResult.HomeWin;
-        if (PredictedAwayGoals.Value > PredictedHomeGoals.Value)
-            return PredictionResult.AwayWin;
-        return PredictionResult.Draw;
+        return PredictedHomeGoals.Value > PredictedAwayGoals.Value
+            ? PredictionResult.HomeWin
+            : PredictedAwayGoals.Value > PredictedHomeGoals.Value ? PredictionResult.AwayWin : PredictionResult.Draw;
     }
 
     private PredictionResult GetActualResult(GoalCount homeGoals, GoalCount awayGoals)
     {
-        if (homeGoals.Value > awayGoals.Value)
-            return PredictionResult.HomeWin;
-        if (awayGoals.Value > homeGoals.Value)
-            return PredictionResult.AwayWin;
-        return PredictionResult.Draw;
+        return homeGoals.Value > awayGoals.Value
+            ? PredictionResult.HomeWin
+            : awayGoals.Value > homeGoals.Value ? PredictionResult.AwayWin : PredictionResult.Draw;
     }
 
     private Prediction() { }

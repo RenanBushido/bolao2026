@@ -1,5 +1,3 @@
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Aggregates;
 
 public class User
@@ -8,7 +6,7 @@ public class User
     public string Email { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public Points TotalScore { get; set; }
-    private readonly List<Guid> _predictionIds = new();
+    private readonly List<Guid> _predictionIds = [];
     public IReadOnlyList<Guid> PredictionIds => _predictionIds.AsReadOnly();
     public DateTime CreatedAt { get; set; }
 
@@ -18,7 +16,7 @@ public class User
             throw new ArgumentException("Email é obrigatório", nameof(email));
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Name é obrigatório", nameof(name));
-        if (!email.Contains("@"))
+        if (!email.Contains('@'))
             throw new ArgumentException("Email inválido", nameof(email));
 
         Id = Guid.NewGuid();
@@ -40,9 +38,7 @@ public class User
 
     public void UpdateTotalScore(Points newTotal)
     {
-        if (newTotal == null)
-            throw new ArgumentNullException(nameof(newTotal));
-        TotalScore = newTotal;
+        TotalScore = newTotal ?? throw new ArgumentNullException(nameof(newTotal));
     }
 
     private User() { }

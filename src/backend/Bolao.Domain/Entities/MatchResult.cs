@@ -1,5 +1,3 @@
-using Bolao.Domain.ValueObjects;
-
 namespace Bolao.Domain.Entities;
 
 public class MatchResult
@@ -22,11 +20,9 @@ public class MatchResult
 
     public PredictionResult GetResult()
     {
-        if (HomeGoals.Value > AwayGoals.Value)
-            return PredictionResult.HomeWin;
-        if (AwayGoals.Value > HomeGoals.Value)
-            return PredictionResult.AwayWin;
-        return PredictionResult.Draw;
+        return HomeGoals.Value > AwayGoals.Value
+            ? PredictionResult.HomeWin
+            : AwayGoals.Value > HomeGoals.Value ? PredictionResult.AwayWin : PredictionResult.Draw;
     }
 
     private MatchResult() { }

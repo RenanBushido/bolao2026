@@ -1,8 +1,4 @@
-using Bolao.Domain.Aggregates;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Bolao.Infrastructure.Persistence.Mappings;
+namespace Bolao.Infrastructure.Config;
 
 public class MatchConfiguration : IEntityTypeConfiguration<Match>
 {
