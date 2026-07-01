@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Bolao.Api/Bolao.Api.csproj" />
+  <Project Path="Bolao.Application/Bolao.Application.csproj" />
+  <Project Path="Bolao.Domain/Bolao.Domain.csproj" />
+  <Project Path="Bolao.Infrastructure/Bolao.Infrastructure.csproj" />
+</Solution>
