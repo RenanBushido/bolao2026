@@ -483,11 +483,14 @@ $RECYCLE.BIN/
 
 # Database volumes (ignore data files, keep structure)
 database/bolao/*
-!database/bolao/.gitkeep
+
 
 # Environment variables
 .env
 
 # Claude code
 .claude/
+
+# OpenSpec
+openspec/
 
