@@ -2,72 +2,115 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import MatchActivityCard, { Match } from '@/components/MatchActivityCard/MatchActivityCard';
+import { getUpcomingMatches } from '@/src/mocks/matchData';
+import Image from 'next/image';
 
+/**
+ * Refined Hero Section for Landing Page
+ *
+ * Design System: World Cup 2026 Premium Branding
+ * - Asymmetrical layout: 60/40 desktop, 50/50 tablet, stacked mobile
+ * - Color palette: Navy, Gold, Green, Orange
+ * - Typography: Space Grotesk (display) + Inter (body)
+ * - Accessibility: WCAG AA compliant, keyboard navigation, reduced motion support
+ */
 export const Hero = () => {
+  // Use mock data during development (phase 1)
+  // Phase 2: Replace with API call to `/api/matches`
+  const upcomingMatches: Match[] = getUpcomingMatches(2);
+
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 flex items-center justify-center px-4">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+    <section className="relative min-h-screen bg-off-white overflow-hidden">
+      {/* Background Accent Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top-right gradient accent */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-gold/10 to-transparent rounded-full blur-3xl" />
+        {/* Bottom-left gradient accent */}
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-green/5 to-transparent rounded-full blur-3xl" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Icon */}
-        <div className="mb-6 text-7xl animate-bounce" style={{ animationDuration: '3s' }}>
-          ⚽
-        </div>
+      {/* FIFA Logo Badge (Top Right) */}
+      <div className="absolute top-6 right-6 z-20 h-12 w-auto flex items-center">
+        <div className="text-gray-400 text-xs font-semibold uppercase tracking-widest">FIFA</div>
+      </div>
 
-        {/* Headline */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-          Bolão da Copa
-          <span className="block text-2xl md:text-3xl font-semibold mt-2 text-white/90">
-            2026
-          </span>
-        </h1>
+      {/* Main Content Container */}
+      <div className="relative z-10 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 py-16 lg:py-0">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Desktop/Tablet: Two-column layout, Mobile: Single column */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+            {/* LEFT COLUMN (60% on desktop, 100% on mobile) */}
+            <div className="lg:col-span-3 space-y-6">
+              {/* Eyebrow Subtitle */}
+              <div className="inline-block">
+                <span className="text-sm font-semibold text-orange uppercase tracking-wider">
+                  ⚽ Copa do Mundo 2026
+                </span>
+              </div>
 
-        {/* Subheadline */}
-        <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Faça seus palpites, dispute com amigos e conquiste o topo do ranking da Copa do Mundo.
-        </p>
+              {/* Main Headline */}
+              <h1 className="font-display text-display-sm md:text-display-md lg:text-display-lg text-navy leading-tight">
+                Faça Seus Palpites para a Copa 2026
+              </h1>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button
-            variant="primary"
-            size="lg"
-            className="bg-white text-primary-600 hover:bg-white/90"
-            asChild
-          >
-            <Link href="/signup">Começar Agora</Link>
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-white text-white hover:bg-white/10"
-            asChild
-          >
-            <Link href="/login">Entrar</Link>
-          </Button>
-        </div>
+              {/* Subheading/Description */}
+              <p className="font-body text-body-lg md:text-body-lg text-gray-700 max-w-lg leading-relaxed">
+                Participe do maior bolão da Copa do Mundo. Faça seus palpites, compita com amigos e conquiste o topo
+                do ranking. A emoção começa aqui.
+              </p>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-white/20">
-          <div>
-            <div className="text-3xl md:text-4xl font-bold text-white">64</div>
-            <div className="text-white/70 text-sm mt-1">Partidas</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-bold text-white">32</div>
-            <div className="text-white/70 text-sm mt-1">Times</div>
-          </div>
-          <div className="col-span-2 md:col-span-1">
-            <div className="text-3xl md:text-4xl font-bold text-white">∞</div>
-            <div className="text-white/70 text-sm mt-1">Diversão</div>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                {/* Primary CTA: Sign Up */}
+                <Button
+                  className="px-8 py-3 bg-orange text-white font-semibold rounded-lg hover:bg-orange/90 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 transition-all duration-200"
+                  asChild
+                >
+                  <Link href="/signup">
+                    Começar Agora
+                    <span className="ml-2">→</span>
+                  </Link>
+                </Button>
+
+                {/* Secondary CTA: Log In */}
+                <Button
+                  className="px-8 py-3 border-2 border-navy text-navy font-semibold rounded-lg hover:bg-navy/5 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 transition-all duration-200"
+                  asChild
+                >
+                  <Link href="/login">
+                    Entrar
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Trust Signals / Stats */}
+              <div className="pt-8 border-t border-gray-200 grid grid-cols-3 gap-4">
+                <div>
+                  <div className="font-display text-display-sm text-orange">64</div>
+                  <div className="text-body-sm text-gray-600">Partidas</div>
+                </div>
+                <div>
+                  <div className="font-display text-display-sm text-green">32</div>
+                  <div className="text-body-sm text-gray-600">Times</div>
+                </div>
+                <div>
+                  <div className="font-display text-display-sm text-gold">∞</div>
+                  <div className="text-body-sm text-gray-600">Emoção</div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN (40% on desktop, hidden on mobile/tablet for now) */}
+            <div className="hidden lg:col-span-2 lg:flex items-center justify-end">
+              <MatchActivityCard matches={upcomingMatches} className="w-full max-w-md" />
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Bottom Decorative Wave/Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
     </section>
   );
 };

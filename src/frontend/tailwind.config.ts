@@ -8,6 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Design System: World Cup 2026 Premium Branding
+        navy: '#1a2f5c',      // Primary: trust, premium feel
+        gold: '#d4af37',      // Accent: prestige, football tradition
+        green: '#00d084',     // Secondary: energy, football pitch
+        orange: '#f97316',    // Tertiary: urgency, call-to-action
+        // Neutrals
+        'off-white': '#f8f9fa',
+        'near-black': '#1a1a1a',
+
+        // Legacy colors (kept for existing components)
         primary: {
           50: '#f0fef4',
           100: '#dafce8',
@@ -58,6 +68,17 @@ const config: Config = {
         },
       },
       fontSize: {
+        // Display Typography (Space Grotesk - bold, geometric, energetic)
+        'display-xl': ['56px', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.02em' }],
+        'display-lg': ['48px', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.02em' }],
+        'display-md': ['40px', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.015em' }],
+        'display-sm': ['32px', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.01em' }],
+        // Body Typography (Inter - clean, readable)
+        'body-lg': ['18px', { lineHeight: '1.6', fontWeight: '400', letterSpacing: '0' }],
+        'body-base': ['16px', { lineHeight: '1.6', fontWeight: '400', letterSpacing: '0' }],
+        'body-sm': ['14px', { lineHeight: '1.5', fontWeight: '400', letterSpacing: '0.005em' }],
+        'body-xs': ['12px', { lineHeight: '1.5', fontWeight: '400', letterSpacing: '0.01em' }],
+        // Legacy sizes (kept for compatibility)
         h1: ['48px', { lineHeight: '1.2', fontWeight: '700' }],
         h2: ['36px', { lineHeight: '1.3', fontWeight: '600' }],
         h3: ['24px', { lineHeight: '1.4', fontWeight: '500' }],
@@ -96,8 +117,12 @@ const config: Config = {
         '2xl': '1536px',
       },
       fontFamily: {
+        // Design System Fonts
+        display: ['var(--font-display)', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        body: ['var(--font-body)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        // Legacy Fonts (for compatibility)
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        mono: ['var(--font-mono)', 'Monaco', 'Menlo', 'monospace'],
       },
     },
   },
