@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { apiClient } from '@/lib/api-client';
 import { usePredictionsStore, usePredictionsActions } from '../store/predictionsStore';
 import { Prediction, PredictionStats, PredictionListParams } from '../types';
-import { ENDPOINTS } from '@/lib/api';
+import { ENDPOINTS } from '@/lib/endpoints';
 import { ApiError } from '@/lib/types';
 
 interface UsePredictionsResult {

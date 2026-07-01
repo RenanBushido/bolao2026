@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { apiClient } from '@/lib/api-client';
 import { useMatchesStore, useMatchesActions } from '../store/matchesStore';
 import { Match, MatchListParams } from '../types';
-import { ENDPOINTS, CACHE_TTL } from '@/lib/api';
+import { ENDPOINTS } from '@/lib/endpoints';
+import { CACHE_TTL } from '@/lib/api';
 import { ApiError } from '@/lib/types';
 
 interface UseMatchesResult {

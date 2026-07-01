@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import MatchActivityCard, { Match } from '@/components/MatchActivityCard/MatchActivityCard';
-import { getUpcomingMatches } from '@/src/mocks/matchData';
+import { getUpcomingMatches } from '@/mocks/matchData';
 import Image from 'next/image';
 
 /**

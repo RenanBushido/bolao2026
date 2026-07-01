@@ -1,12 +1,12 @@
 /**
  * Auth actions - API calls for authentication
- * In production, these would be Next.js Server Actions in src/app/(auth)/
+ * In production, these would be Next.js Server Actions in src/app/auth/
  */
 
 import { apiClient } from '@/lib/api';
 import { useAuthStore } from '../store/authStore';
 import { User, AuthSession, LoginInput, SignupInput } from '../types';
-import { ENDPOINTS } from '@/lib/api';
+import { ENDPOINTS } from '@/lib/endpoints';
 import { ApiError } from '@/lib/types';
 
 /**

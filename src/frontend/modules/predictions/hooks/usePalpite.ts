@@ -5,7 +5,7 @@ import { apiClient } from '@/lib/api-client';
 import { usePredictionsStore, usePredictionsActions } from '../store/predictionsStore';
 import { useMatchesStore } from '@/modules/matches/store/matchesStore';
 import { Prediction, CreatePredictionInput, UpdatePredictionInput } from '../types';
-import { ENDPOINTS } from '@/lib/api';
+import { ENDPOINTS } from '@/lib/endpoints';
 import { ApiError } from '@/lib/types';
 
 interface UsePalpiteResult {
