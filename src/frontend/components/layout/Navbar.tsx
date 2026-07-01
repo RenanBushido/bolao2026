@@ -1,160 +1,79 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, memo } from 'react';
-import clsx from 'clsx';
-import { Button } from '../ui/Button';
+import { Globe, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
-interface NavbarProps {
-  isAuthenticated?: boolean;
-  userEmail?: string;
-  onLogout?: () => void;
-  mobileMenuOpen?: boolean;
-  onToggleMobileMenu?: () => void;
-  onCloseMobileMenu?: () => void;
-}
-
-const NavbarComponent = ({
-  isAuthenticated = false,
-  userEmail,
-  onLogout,
-  mobileMenuOpen = false,
-  onToggleMobileMenu,
-  onCloseMobileMenu,
-}: NavbarProps) => {
-  const handleLogout = useCallback(() => {
-    onLogout?.();
-  }, [onLogout]);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: '/', label: 'Início' },
-    { href: '/palpites', label: 'Palpites', protected: true },
-    { href: '/leaderboard', label: 'Ranking', protected: true },
+    { label: 'Home', href: '#' },
+    { label: 'Jogos', href: '#games' },
+    { label: 'Grupos', href: '#groups' },
+    { label: 'Equipes', href: '#teams' },
+    { label: 'Ranking', href: '#ranking' },
+    { label: 'Simulador', href: '#simulator' },
   ];
 
-  const visibleLinks = isAuthenticated
-    ? navLinks
-    : navLinks.filter((link) => !link.protected);
-
   return (
-    <nav className="bg-white border-b border-neutral-200 sticky top-0 z-40">
-      <div className="container-base">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-bold text-xl text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <span>⚽</span>
-            <span className="hidden sm:inline">Bolão 2026</span>
-          </Link>
+    <nav className="h-20 bg-[#060B16] border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <Globe className="w-8 h-8 text-[#D4AF37]" />
+          <span className="text-white font-bold text-xl tracking-wider">Portal Copa26</span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            {visibleLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-neutral-700 hover:text-primary-600 transition-colors font-medium text-sm"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Desktop Auth Section */}
-          <div className="hidden md:flex items-center gap-3">
-            {isAuthenticated ? (
-              <>
-                <span className="text-sm text-neutral-600">{userEmail}</span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleLogout}
-                >
-                  Sair
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button variant="ghost" size="sm" asChild>
-                  <Link href="/login">Entrar</Link>
-                </Button>
-                <Button variant="primary" size="sm" asChild>
-                  <Link href="/signup">Cadastrar</Link>
-                </Button>
-              </>
-            )}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={onToggleMobileMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-[#A0AEC0] hover:text-[#D4AF37] transition-colors text-sm font-medium"
             >
-              <path d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
-            </svg>
-          </button>
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-neutral-200 py-4 space-y-3">
-            {visibleLinks.map((link) => (
-              <Link
-                key={link.href}
+        <div className="flex items-center gap-4">
+          <button className="hidden sm:flex items-center gap-2 bg-[#D4AF37] text-[#060B16] px-4 py-2 rounded-full font-bold hover:bg-[#E5C158] transition-colors">
+            <Globe className="w-4 h-4" />
+            <span className="text-sm">FIFA 2026</span>
+          </button>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white hover:text-[#D4AF37] transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="md:hidden bg-[#101826] border-t border-white/10">
+          <div className="px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
                 href={link.href}
-                className="block px-4 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors"
-                onClick={onCloseMobileMenu}
+                className="block text-[#A0AEC0] hover:text-[#D4AF37] transition-colors text-sm font-medium py-2"
+                onClick={() => setIsOpen(false)}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
-
-            <div className="pt-3 px-4 border-t border-neutral-200 space-y-2">
-              {isAuthenticated ? (
-                <>
-                  <p className="text-sm text-neutral-600 mb-2">{userEmail}</p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    fullWidth
-                    onClick={handleLogout}
-                  >
-                    Sair
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button variant="ghost" size="sm" fullWidth asChild>
-                    <Link href="/login" onClick={onCloseMobileMenu}>
-                      Entrar
-                    </Link>
-                  </Button>
-                  <Button variant="primary" size="sm" fullWidth asChild>
-                    <Link href="/signup" onClick={onCloseMobileMenu}>
-                      Cadastrar
-                    </Link>
-                  </Button>
-                </>
-              )}
-            </div>
+            <button className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] text-[#060B16] px-4 py-2 rounded-full font-bold hover:bg-[#E5C158] transition-colors mt-4">
+              <Globe className="w-4 h-4" />
+              <span className="text-sm">FIFA 2026</span>
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 };
 
-export const Navbar = memo(NavbarComponent);
-Navbar.displayName = 'Navbar';
+export default Navbar;

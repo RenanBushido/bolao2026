@@ -1,38 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk, Inter } from "next/font/google";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
-});
-
-// Design System Fonts
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap", // Prevents blocking - uses fallback while font loads
-});
-
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Bolão 2026 - FIFA World Cup Betting Pool",
-  description: "Experience the excitement of FIFA World Cup 2026 with Bolão 2026 betting pool",
-  keywords: ["World Cup", "2026", "Betting", "Football", "Soccer"],
+  title: "Copa 2026 - Simulador Oficial FIFA World Cup",
+  description: "Portal oficial de simulação e palpites da Copa do Mundo FIFA 2026",
+  keywords: ["FIFA 2026", "World Cup", "Copa do Mundo", "Simulador", "Palpites"],
 };
 
 export default function RootLayout({
@@ -41,14 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} scroll-smooth antialiased`}
-    >
-      <body className="min-h-screen flex flex-col bg-white">
-        <Navigation />
-        <main className="flex-grow pt-16">{children}</main>
-        <Footer />
+    <html lang="pt-BR">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-[#060B16] text-white antialiased`}
+      >
+        <Navbar />
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );

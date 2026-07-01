@@ -8,14 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Design System: World Cup 2026 Premium Branding
-        navy: '#1a2f5c',      // Primary: trust, premium feel
-        gold: '#d4af37',      // Accent: prestige, football tradition
-        green: '#00d084',     // Secondary: energy, football pitch
-        orange: '#f97316',    // Tertiary: urgency, call-to-action
-        // Neutrals
-        'off-white': '#f8f9fa',
-        'near-black': '#1a1a1a',
+        // Dark Mode Premium - FIFA 2026 (from FRONTEND_2.md)
+        'dark-bg': '#060B16',           // Primary background
+        'dark-secondary': '#101826',    // Secondary background
+        'dark-card': 'rgba(255, 255, 255, 0.05)',
+        'gold-primary': '#D4AF37',      // Gold primary
+        'gold-hover': '#E5C158',        // Gold hover
+        'yellow-accent': '#FFC857',     // Yellow accent
+        'text-white': '#FFFFFF',        // Primary text
+        'text-secondary': '#A0AEC0',    // Secondary text
+        'text-muted': '#718096',        // Muted text
 
         // Legacy colors (kept for existing components)
         primary: {
