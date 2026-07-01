@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15.18-alpine3.23
+    container_name: bolao-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bolao}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev123}
+      POSTGRES_DB: ${POSTGRES_DB:-bolao_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - ./database/bolao:/var/lib/postgresql/data
+    networks:
+      - bolao-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-bolao}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: src/backend/Dockerfile
+    container_name: bolao-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=${POSTGRES_DB:-bolao_db};Username=${POSTGRES_USER:-bolao};Password=${POSTGRES_PASSWORD:-dev123}"
+    ports:
+      - "5000:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bolao-network
+    volumes:
+      - ./src/backend:/app
+
+networks:
+  bolao-network:
+    driver: bridge

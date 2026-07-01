@@ -481,8 +481,12 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Database
-database/
+# Database volumes (ignore data files, keep structure)
+database/bolao/*
+!database/bolao/.gitkeep
+
+# Environment variables
+.env
 
 # Claude code
 .claude/
