@@ -494,3 +494,7 @@ database/bolao/*
 # OpenSpec
 openspec/
 
+# FrontEnd
+src/frontend/webapp/node_modules/
+
+.prettierc

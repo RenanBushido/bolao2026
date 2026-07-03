@@ -3,12 +3,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Bolao.Application\Bolao.Application.csproj" />
     <ProjectReference Include="..\Bolao.Infrastructure\Bolao.Infrastructure.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    
   </PropertyGroup>
 
 </Project>

@@ -1,35 +1,31 @@
-using Bolao.Api.Middleware;
-using Bolao.IoC.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
+builder.Services.AddApiDatabase(builder.Configuration);
+builder.Services.ApiAddValidators();
+builder.Services.ApiAddAutoMapper();
+builder.Services.ApiAddMediaTr();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddApplicationLayer();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Apply migrations on startup
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
-}
+app.ApplyMigrations();
 
 // Exception handling middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(cfg =>
+    {
+        cfg.DocumentTitle = "Bolao 2026 - API";
+        cfg.SwaggerEndpoint("/swagger/v1/swagger.json", cfg.DocumentTitle);
+    });
 }
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
-
 app.Run();

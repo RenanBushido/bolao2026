@@ -2,7 +2,7 @@ namespace Bolao.Domain.ValueObjects;
 
 public record Score
 {
-    public int Value { get; }
+    public int Value { get; private set; }
 
     public Score(int value)
     {
@@ -11,6 +11,8 @@ public record Score
 
         Value = value;
     }
+
+    private Score() { }
 
     public static Score Zero => new(0);
     public static Score ExactResult => new(18);

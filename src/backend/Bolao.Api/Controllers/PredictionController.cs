@@ -1,7 +1,3 @@
-using Bolao.Application.DTOs;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Bolao.Api.Controllers;
 
 /// <summary>
@@ -9,14 +5,9 @@ namespace Bolao.Api.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class PredictionController : ControllerBase
+public class PredictionController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public PredictionController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     /// <summary>
     /// Create a new prediction (must be before 2-hour blocking window).

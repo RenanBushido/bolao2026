@@ -14,6 +14,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired()
             .HasMaxLength(100);
 
+        builder.OwnsOne(u => u.TotalScore, score =>
+        {
+            score.Property(s => s.Value).HasColumnName("TotalScore");
+        });
+
         builder.Property(u => u.CreatedAt).IsRequired();
 
         builder.HasIndex(u => u.Email).IsUnique();

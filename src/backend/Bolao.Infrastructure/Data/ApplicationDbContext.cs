@@ -13,6 +13,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Group> Groups => Set<Group>();
     public DbSet<GroupStage> GroupStages => Set<GroupStage>();
     public DbSet<Player> Players => Set<Player>();
+    public DbSet<MenuHeader> MenuHeaders => Set<MenuHeader>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

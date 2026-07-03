@@ -50,12 +50,7 @@ public class Prediction
         if (exactGoals)
             return 18;
 
-        if (predictedResult == actualResult)
-        {
-            return homeGoalsCorrect || awayGoalsCorrect ? 12 : 9;
-        }
-
-        return homeGoalsCorrect || awayGoalsCorrect ? 3 : 0;
+        return predictedResult == actualResult ? homeGoalsCorrect || awayGoalsCorrect ? 12 : 9 : homeGoalsCorrect || awayGoalsCorrect ? 3 : 0;
     }
 
     public PredictionResult GetPredictedResult()

@@ -124,7 +124,7 @@ csharp_style_prefer_readonly_struct = true:suggestion
 csharp_style_prefer_readonly_struct_member = true:suggestion
 
 # Code-block preferences
-csharp_prefer_braces = true:silent
+csharp_prefer_braces = true:none
 csharp_prefer_simple_using_statement = true:suggestion
 csharp_style_namespace_declarations = file_scoped:suggestion
 csharp_style_prefer_method_group_conversion = true:silent
@@ -212,6 +212,12 @@ dotnet_diagnostic.CA1862.severity = none
 
 # CS8603: Possible null reference return.
 dotnet_diagnostic.CS8603.severity = none
+
+# CS0108: Member hides inherited member; missing new keyword
+dotnet_diagnostic.CS0108.severity = none
+
+# IDE0011: Add braces
+dotnet_diagnostic.IDE0011.severity = none
 
 [*.{cs,vb}]
 

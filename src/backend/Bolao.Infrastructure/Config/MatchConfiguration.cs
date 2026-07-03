@@ -13,6 +13,19 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
         builder.Property(m => m.Phase).IsRequired();
         builder.Property(m => m.Status).IsRequired();
 
+        builder.OwnsOne(m => m.Result, result =>
+        {
+            result.Property(r => r.CreatedAt).IsRequired();
+            result.OwnsOne(r => r.HomeGoals, homeGoals =>
+            {
+                homeGoals.Property(g => g.Value).HasColumnName("HomeGoals");
+            });
+            result.OwnsOne(r => r.AwayGoals, awayGoals =>
+            {
+                awayGoals.Property(g => g.Value).HasColumnName("AwayGoals");
+            });
+        });
+
         builder.ToTable("Matches");
     }
 }

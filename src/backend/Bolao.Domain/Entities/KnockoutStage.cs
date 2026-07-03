@@ -33,9 +33,9 @@ public class KnockoutStage
 
     public IReadOnlyList<Guid> GetTeamsInPhase(string phase)
     {
-        if (!_phaseTeams.ContainsKey(phase))
-            throw new ArgumentException($"Fase '{phase}' não existe", nameof(phase));
-        return _phaseTeams[phase].AsReadOnly();
+        return !_phaseTeams.ContainsKey(phase)
+            ? throw new ArgumentException($"Fase '{phase}' não existe", nameof(phase))
+            : (IReadOnlyList<Guid>)_phaseTeams[phase].AsReadOnly();
     }
 
     private KnockoutStage() { }

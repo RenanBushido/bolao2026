@@ -1,9 +1,10 @@
 namespace Bolao.Application.Handlers.Commands;
 
-public class CreateMatchCommandHandler(IMatchRepository repository, IMapper mapper) : IRequestHandler<CreateMatchCommand, MatchResponse>
+public class CreateMatchCommandHandler(IMatchRepository repository, IMapper mapper, IUnitOfWork unitOfWork) : IRequestHandler<CreateMatchCommand, MatchResponse>
 {
     private readonly IMatchRepository _repository = repository;
     private readonly IMapper _mapper = mapper;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<MatchResponse> Handle(CreateMatchCommand request, CancellationToken cancellationToken)
     {
@@ -16,7 +17,7 @@ public class CreateMatchCommandHandler(IMatchRepository repository, IMapper mapp
         );
 
         await _repository.AddAsync(match);
-        await _repository.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<MatchResponse>(match);
     }

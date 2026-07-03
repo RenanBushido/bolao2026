@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15.18-alpine3.23
@@ -20,23 +18,23 @@ services:
       timeout: 5s
       retries: 5
 
-  api:
-    build:
-      context: .
-      dockerfile: src/backend/Dockerfile
-    container_name: bolao-api
-    environment:
-      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
-      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=${POSTGRES_DB:-bolao_db};Username=${POSTGRES_USER:-bolao};Password=${POSTGRES_PASSWORD:-dev123}"
-    ports:
-      - "5000:8080"
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - bolao-network
-    volumes:
-      - ./src/backend:/app
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: src/backend/Dockerfile
+  #   container_name: bolao-api
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+  #     ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=${POSTGRES_DB:-bolao_db};Username=${POSTGRES_USER:-bolao};Password=${POSTGRES_PASSWORD:-dev123}"
+  #   ports:
+  #     - "5000:8080"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   networks:
+  #     - bolao-network
+  #   volumes:
+  #     - ./src/backend:/app
 
 networks:
   bolao-network:

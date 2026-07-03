@@ -31,8 +31,5 @@ public abstract class Repository<T>(ApplicationDbContext context) : IRepository<
             _context.Set<T>().Remove(entity);
     }
 
-    public virtual async Task SaveChangesAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
+    
 }

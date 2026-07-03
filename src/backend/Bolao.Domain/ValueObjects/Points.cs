@@ -2,7 +2,7 @@ namespace Bolao.Domain.ValueObjects;
 
 public record Points
 {
-    public int Value { get; }
+    public int Value { get; private set; }
 
     public Points(int value)
     {
@@ -11,6 +11,8 @@ public record Points
 
         Value = value;
     }
+
+    private Points() { }
 
     public static Points operator +(Points a, Points b) => new(a.Value + b.Value);
     public override string ToString() => Value.ToString();

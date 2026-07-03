@@ -2,7 +2,7 @@ namespace Bolao.Domain.ValueObjects;
 
 public sealed record GoalCount
 {
-    public int Value { get; }
+    public int Value { get; private set; }
 
     public GoalCount(int value)
     {
@@ -11,6 +11,8 @@ public sealed record GoalCount
 
         Value = value;
     }
+
+    private GoalCount() { }
 
     public override string ToString() => Value.ToString();
 }
