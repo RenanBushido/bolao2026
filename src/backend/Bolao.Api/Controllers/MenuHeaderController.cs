@@ -1,7 +1,7 @@
 namespace Bolao.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/menus")]
 public class MenuHeaderController(IMediator mediator): ControllerBase
 {
     private readonly IMediator _mediator = mediator;
@@ -14,5 +14,14 @@ public class MenuHeaderController(IMediator mediator): ControllerBase
         var result = await _mediator.Send(command, cancellationToken);
 
         return Ok(result);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(MenuHeaderResponse), StatusCodes.Status201Created)]
+    public async Task<ActionResult<MenuHeaderResponse>> CreateMenuHeader(CreateMenuHeaderCommand request, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(request, cancellationToken);
+
+        return result;
     }
 }

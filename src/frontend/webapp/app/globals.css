@@ -3,12 +3,14 @@
 :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --neon-lime: #ccff00;
 }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-inter: var(--font-inter);
+    --color-primary: var(--neon-lime);
 }
 
 @media (prefers-color-scheme: dark) {
